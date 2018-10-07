@@ -7,17 +7,17 @@
 
 @font-face {
   font-family: Montserrat-Regular;
-  src: url('../fonts/montserrat/Montserrat-Regular.ttf'); 
+  src: url('../fonts/montserrat/Montserrat-Regular.ttf');
 }
 
 @font-face {
   font-family: Montserrat-ExtraBold;
-  src: url('../fonts/montserrat/Montserrat-ExtraBold.ttf'); 
+  src: url('../fonts/montserrat/Montserrat-ExtraBold.ttf');
 }
 
 @font-face {
   font-family: Montserrat-Bold;
-  src: url('../fonts/montserrat/Montserrat-Bold.ttf'); 
+  src: url('../fonts/montserrat/Montserrat-Bold.ttf');
 }
 
 
@@ -25,8 +25,8 @@
 [ RESTYLE TAG ]*/
 
 * {
-	margin: 0px; 
-	padding: 0px; 
+	margin: 0px;
+	padding: 0px;
 	box-sizing: border-box;
 }
 
@@ -154,7 +154,7 @@ iframe {
 }
 
 .container-login100 {
-  width: 100%;  
+  width: 100%;
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -168,7 +168,7 @@ iframe {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  
+
   position: relative;
   z-index: 1;
 }
@@ -186,7 +186,7 @@ iframe {
   background: -webkit-linear-gradient(bottom, #005bea, #00c6fb);
   background: -o-linear-gradient(bottom, #005bea, #00c6fb);
   background: -moz-linear-gradient(bottom, #005bea, #00c6fb);
-  background: linear-gradient(bottom, #005bea, #00c6fb);
+  background: linear-gradient(to top, #005bea, #00c6fb);
   opacity: 0.9;
 }
 
@@ -376,7 +376,7 @@ iframe {
   background: -webkit-linear-gradient(left, #005bea, #00c6fb);
   background: -o-linear-gradient(left, #005bea, #00c6fb);
   background: -moz-linear-gradient(left, #005bea, #00c6fb);
-  background: linear-gradient(left, #005bea, #00c6fb);
+  background: linear-gradient(to right, #005bea, #00c6fb);
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
