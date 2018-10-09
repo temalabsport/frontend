@@ -12,10 +12,8 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.options = new Array();
-    this.options.push('alma');
-    this.options.push('korte');
-    this.options.push('barack');
-    this.options.push('lo');
+    this.options.push('Profil');
+    this.options.push('Statisztika');
   }
 
 }

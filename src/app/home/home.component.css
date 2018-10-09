@@ -1,0 +1,16 @@
+h1{
+  margin-bottom: 4%;
+  margin-top: 5%;
+  margin-left: 5%;
+}
+
+#eventtable {
+  max-height: 50%;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+input {
+  background-color: black;
+}
+

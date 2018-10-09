@@ -1,16 +1,41 @@
-<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>First name</th>
-      <th>Last name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let person of persons">
-      <td>{{ person.id }}</td>
-      <td>{{ person.firstName }}</td>
-      <td>{{ person.lastName }}</td>
-    </tr>
-  </tbody>
-  </table>
+<app-navbar></app-navbar>
+
+<h1>Upcoming Events</h1>
+
+<div id="eventtable">
+  <div class="row">
+
+    <div class="col-md-6 col-xs-7" >
+        <table datatable [dtOptions]="dtOptions" class="table table-bordered hover">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Sport</th>
+                <th>Place</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let event of events">
+                <td>{{event.id}}</td>
+                <td>{{event.name}}</td>
+                <td>{{event.date}}</td>
+                <td>{{event.sport}}</td>
+                <td><button #place (click)="showOnMap($event)">{{event.place}}</button></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+
+    <div  class="col-md-1 col-xs-1"></div>
+
+    <div  class="col-md-5 col-xs-4">
+      <div id="map" class="map"></div>
+    </div>
+
+  </div>
+</div>
+
+
+

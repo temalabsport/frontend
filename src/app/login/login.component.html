@@ -1,7 +1,7 @@
 <div class="limiter">
   <div class="container-login100">
     <div id="middle" class="wrap-login100 p-t-190 p-b-30">
-      <form class="login100-form validate-form">
+      <form [routerLink]="[ 'home' ]" routerLinkActive="active" class="login100-form validate-form">
 
         <span class="login100-form-title p-t-20 p-b-45">
           <span style="font-size: 100px">
@@ -41,7 +41,7 @@
         </div>
 
         <div class="text-center w-full">
-          <a class="txt1" href="#">
+          <a class="txt1" [routerLink]="[ 'register' ]" routerLinkActive="active">
             Create new account
             <i class="fa fa-long-arrow-right"></i>
           </a>
