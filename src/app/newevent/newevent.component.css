@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=EB+Garamond:600');
+@import url('https://fonts.googleapis.com/css?family=Righteous');
+
+.show-on-hover:hover>.dropdown-menu {
+  display: block;
+}
+
+h1 {
+  font-family: Righteous;
+}
+
+#eventform {
+  padding-top: 1em;
+  background-image: linear-gradient(to top, #005bea, #00c6fb);
+  min-height: 100%;
+}
+
+form {
+  padding: 2em;
+  background-image: linear-gradient(to top, #00c6fb, #27c55c);
+  border-radius: 20px;
+}
+
+#selectSport {
+  max-width: 15em;
+}
+
+label {
+  font-family: 'EB Garamond', serif;
+  font-size: 22px;
+}
+
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  text-align: center;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  text-align: center;
+}
+
+:-ms-input-placeholder {
+  text-align: center;
+}

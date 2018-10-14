@@ -1,0 +1,18 @@
+#logoutcomponent {
+  background-image: linear-gradient(to top, #005bea, #00c6fb);
+  min-height: 100%;
+}
+
+a {
+  margin-top: 2em;
+  margin-right: 5em;
+}
+
+.title {
+  margin-top: 10%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  background-color: #2267c2;
+}
+
+
