@@ -1,0 +1,12 @@
+<app-navbar></app-navbar>
+<div id="userlist">
+  <div class="container">
+      <h1>Players</h1>
+    <div id="users">
+      <div class="list-group">
+        <a *ngFor="let player of players" href="#" class="list-group-item list-group-item-action">{{player.userName}}
+          ({{player.fullName}})</a>
+      </div>
+    </div>
+  </div>
+</div>

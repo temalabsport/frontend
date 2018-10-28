@@ -18,6 +18,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { LogoutComponent } from './logout/logout.component';
 import { NewEventComponent } from './newevent/newevent.component';
+import { UserlistComponent } from './/userlist/userlist.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
   { path: 'logout',      component: LogoutComponent },
   { path: 'home',      component: HomeComponent },
   { path: 'newevent',      component: NewEventComponent },
+  { path: 'users',      component: UserlistComponent },
 ];
 
 import {
@@ -67,6 +69,7 @@ import {
 
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { httpInterceptorProviders } from './http-interceptors';
 
 @NgModule({
   exports: [
@@ -107,7 +110,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-  ]
+  ],
+  declarations: []
 })
 export class MaterialModule {}
 
@@ -119,7 +123,8 @@ export class MaterialModule {}
     RegisterComponent,
     HomeComponent,
     LogoutComponent,
-    NewEventComponent
+    NewEventComponent,
+    UserlistComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -133,12 +138,10 @@ export class MaterialModule {}
     FormsModule,
     HttpClientModule,
     MaterialModule,
-    MatNativeDateModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 
-platformBrowserDynamic().bootstrapModule(AppModule);

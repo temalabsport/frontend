@@ -1,0 +1,13 @@
+#userlist {
+  padding-top: 1em;
+  background-image: linear-gradient(to top, #005bea, #00c6fb);
+  min-height: 100%;
+}
+
+a {
+  max-width: 50%;
+  background-color: aqua;
+  margin-bottom: 5px;
+  color: #000000;
+  border-radius: 10px;
+}

@@ -10,7 +10,24 @@ h1{
   margin-right: 30px;
 }
 
-input {
-  background-color: black;
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+#map {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 100%;
+  height: auto;
 }
 

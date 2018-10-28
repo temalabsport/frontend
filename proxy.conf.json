@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "http://sport-temalabor.azurewebsites.net/api",
+    "secure": false,
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "changeOrigin": true
+  }
+}
