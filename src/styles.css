@@ -2,3 +2,12 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 /* @import "~font-awesome/css/font-awesome.css"; */
 
+
+html {
+  background: linear-gradient(to top, #005bea, #00c6fb) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+

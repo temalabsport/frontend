@@ -5,14 +5,13 @@
   display: block;
 }
 
+
 h1 {
   font-family: Righteous;
 }
 
 #eventform {
-  padding-top: 1em;
-  background-image: linear-gradient(to top, #005bea, #00c6fb);
-  min-height: 100%;
+  margin-top: 1em;
 }
 
 form {
@@ -27,7 +26,6 @@ form {
 
 label {
   font-family: 'EB Garamond', serif;
-  font-size: 22px;
 }
 
 ::-webkit-input-placeholder {

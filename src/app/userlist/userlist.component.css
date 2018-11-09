@@ -1,7 +1,7 @@
 .userlist {
-  padding-top: 1em;
-  background-image: linear-gradient(to top, #005bea, #00c6fb);
-  min-height: 100%;
+  margin-top: 1em;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 a {

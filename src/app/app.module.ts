@@ -27,7 +27,8 @@ const appRoutes: Routes = [
   { path: 'newevent', component: NewEventComponent },
   { path: 'users', component: UserlistComponent },
   { path: 'user', component: ProfileComponent },
-  { path: 'events', component: EventlistComponent}
+  { path: 'events', component: EventlistComponent },
+  { path: 'join', component: JoineventComponent }
 ];
 
 import {
@@ -68,11 +69,11 @@ import {
   MatTreeModule
 } from '@angular/material';
 
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { httpInterceptorProviders } from './http-interceptors';
 import { ProfileComponent } from './profile/profile.component';
 import { EventlistComponent } from './eventlist/eventlist.component';
+import { JoineventComponent } from './joinevent/joinevent.component';
 
 @NgModule({
   exports: [
@@ -129,7 +130,8 @@ export class MaterialModule {}
     NewEventComponent,
     UserlistComponent,
     EventlistComponent,
-    ProfileComponent
+    ProfileComponent,
+    JoineventComponent
   ],
   imports: [
     RouterModule.forRoot(

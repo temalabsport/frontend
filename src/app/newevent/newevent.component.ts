@@ -17,10 +17,11 @@ export class NewEventComponent implements OnInit {
   loading: boolean;
 
   constructor(
+    private router: Router,
     private formBuilder: FormBuilder,
     private dataService: DataService,
-    private locationService: LocationService,
-    private router: Router) { }
+    private locationService: LocationService
+  ) {}
 
   // sport: sport, name: name, date: date, deadline: deadline, description: description
   ngOnInit() {
@@ -39,13 +40,11 @@ export class NewEventComponent implements OnInit {
   }
 
   setSports() {
-      this.dataService.getSports()
-        .subscribe( sportsresult => {
-          for (const sport of sportsresult) {
-            this.sports.push(sport.name);
-          }
-        }
-        );
+    this.dataService.getSports().subscribe(sportsresult => {
+      for (const sport of sportsresult) {
+        this.sports.push(sport.name);
+      }
+    });
   }
 
   get f() {
@@ -55,19 +54,21 @@ export class NewEventComponent implements OnInit {
   onSubmit() {
     this.dataService
       .postNewEvent(
-        this.f.sport.value, this.f.name.value, this.f.location.value,
-        this.f.date.value, this.f.deadline.value, this.f.description.value)
+        this.f.sport.value,
+        this.f.name.value,
+        this.f.location.value,
+        this.f.date.value,
+        this.f.deadline.value,
+        this.f.description.value
+      )
       .pipe(first())
       .subscribe(
-        data => {
+        resp => {
           this.router.navigate(['/home']);
         },
         error => {
-          this.loading = false;
+          this.router.navigate(['/home']);
         }
       );
   }
-
-
-
 }
