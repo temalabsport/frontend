@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DataService } from '../services/data/data.service';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { LocationService } from '../services/location/location.service';
 
 @Component({
   selector: 'app-newevent',
@@ -18,6 +19,7 @@ export class NewEventComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private dataService: DataService,
+    private locationService: LocationService,
     private router: Router) { }
 
   // sport: sport, name: name, date: date, deadline: deadline, description: description
@@ -65,5 +67,7 @@ export class NewEventComponent implements OnInit {
         }
       );
   }
+
+
 
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { User } from 'src/app/models/user';
 
 
 @Injectable({
@@ -19,6 +20,19 @@ export class DataService {
 
   postNewEvent(sport: string, name: string, location: string, date: string, deadline: string, description: string) {
     return this.http.post<any>(`/api/event/new`,
-    { sport: sport, name: name, location: location, date: date, deadline: deadline, description: description });
+    { sport: sport, name: name, latitude: 0, longitude: 0, location: location, date: date, deadline: deadline, description: description });
+  }
+
+  getUsers() {
+    return this.http.get<any>(`/api/user/search`);
+  }
+
+  getUser(userName: string) {
+    return this.http.get<any>(`/api/user/findByUserName/` + userName);
+  }
+
+  getEventsByUser(userName: string) {
+    const options = { params: new HttpParams().set('userName', userName) };
+    return this.http.get<any>(`/api/event/search`, options);
   }
 }

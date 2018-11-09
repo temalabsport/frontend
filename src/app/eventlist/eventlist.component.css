@@ -1,0 +1,59 @@
+.eventlist {
+  padding-top: 1em;
+  background-image: linear-gradient(to top, #005bea, #00c6fb);
+  min-height: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+h1 {
+  margin-bottom: 4%;
+  margin-top: 5%;
+  margin-left: 5%;
+}
+
+addbutton {
+
+}
+
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 18px;
+  color: #000000;
+  width: 100%;
+}
+
+tr.eventrow:hover {
+  cursor: pointer;
+  background: #74e098;
+}
+
+tr.event-detail-row {
+  height: 0;
+}
+
+tr.eventrowrow:not(.expanded-row):hover {
+  cursor: pointer;
+  background: #74e098;
+}
+
+tr.eventrow:not(.expanded-row):active {
+  background: #efefef;
+}
+
+.eventrow td {
+  border-bottom-width: 0;
+}
+
+.event-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.event-description {
+  padding: 16px;
+}

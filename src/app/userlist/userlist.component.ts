@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from '../models/user';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { DataService } from '../services/data/data.service';
+
 
 @Component({
   selector: 'app-userlist',
@@ -7,17 +9,36 @@ import { User } from '../models/user';
   styleUrls: ['./userlist.component.css']
 })
 export class UserlistComponent implements OnInit {
-  players: Array<User>;
+  displayedColumns: string[] = ['userName', 'fullName'];
+  dataSource = new MatTableDataSource();
 
-  constructor() { }
+  @ViewChild(MatPaginator)
+  paginator: MatPaginator;
+  @ViewChild(MatSort)
+  sort: MatSort;
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  constructor(
+    private dataService: DataService) { }
 
   ngOnInit() {
-    this.players = new Array();
-    const user = new User('a', 'b', 'c');
-    for (let i = 0; i < 10 ;  ++i) {
-      this.players.push(new User('Bela' + i * 10, 'bela' + i * 11 + '@gmail.com', 'Bela' + i));
-    }
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
 
+    this.dataService.getUsers()
+    .subscribe(result => {
+      this.dataSource.data = result.results;
+    });
   }
+
+
+
+
 
 }

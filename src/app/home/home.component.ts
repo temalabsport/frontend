@@ -9,6 +9,7 @@ import OSM from 'ol/source/OSM';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Event } from 'src/app/models/event';
 import { DataService } from '../services/data/data.service';
+import { LocationService } from '../services/location/location.service';
 
 declare var google: any;
 declare var ol: any;
@@ -32,7 +33,8 @@ export class HomeComponent implements OnInit {
   map: any;
 
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService,
+    private locationService: LocationService) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -52,35 +54,10 @@ export class HomeComponent implements OnInit {
 
   }
 
-  /*createMockEvents() {
-    let events: Event[];
-    events = new Array();
-    events.push({
-      sport: 'foci',
-      creator: 'bela',
-      name: 'kosarmeccs',
-      location: 'Wisconsin, Greenbay, Lambeau Field',
-      date: '2019-01-01',
-      deadline: '2019-01-01',
-      description: 'asd'
-    });
-    for (let i = 0; i < 30; ++i) {
-      events.push({
-        sport: 'foci',
-        creator: 'bela' + i.toString(),
-        name: 'kosarmeccs' + i.toString(),
-        location: 'Budapest, BME Sportközpont',
-        date: '2019-01-01',
-        deadline: '2019-01-01',
-        description: 'asd' + i.toString()
-      });
-    }
-    return events;
-  }*/
-
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
 
     const mousePositionControl = new ol.control.MousePosition({
       coordinateFormat: ol.coordinate.createStringXY(4),
@@ -110,6 +87,7 @@ export class HomeComponent implements OnInit {
       target: 'map'
     });
   }
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -119,40 +97,20 @@ export class HomeComponent implements OnInit {
   }
 
   showOnMap(event: any) {
-    this.getLatitudeLongitude(this.setLongLat, event.target.innerHTML);
+    this.locationService.geocodeAddress(event.target.innerHTML, this.setMap, this);
+
   }
 
-  getLatitudeLongitude(callback, address): void {
-    // If adress is not supplied, use default value 'Ferrol, Galicia, Spain'
-    address = address || 'Ferrol, Galicia, Spain';
-    // Initialize the Geocoder
-    const geocoder = new google.maps.Geocoder();
-    const that = this;
-    if (geocoder) {
-      geocoder.geocode(
-        {
-          address: address
-        },
-        function(results, status) {
-          if (status === google.maps.GeocoderStatus.OK) {
-            callback(results[0], that);
-          }
-        }
-      );
-    }
-  }
-
-  setLongLat(result: any, that: any): void {
-    const view = that.map.getView();
+  setMap(lonLat: any, context: any) {
+    const view = context.map.getView();
     view.setCenter(
       ol.proj.fromLonLat([
-        result.geometry.location.lng(),
-        result.geometry.location.lat()
+        lonLat.longitude,
+        lonLat.latitude
       ])
     );
 
     view.setZoom(18);
-
   }
 
   showLongLat(result): void {

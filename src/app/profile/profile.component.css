@@ -1,0 +1,21 @@
+.profile {
+  margin-top: 5%;
+  padding: 5%;
+  border-width: 10px;
+  border-style: solid;
+  background-color: #e05757;
+  border-radius: 20px;
+}
+
+.profilepage {
+  padding-top: 1em;
+  background-image: linear-gradient(to top, #005bea, #00c6fb);
+  min-height: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+h1 {
+  background-color: #70e2e6;
+  border-radius: 10px;
+}

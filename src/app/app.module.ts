@@ -5,12 +5,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './/app-routing.module';
 import { DataTablesModule } from 'angular-datatables';
-import {HttpClientModule} from '@angular/common/http';
-import {CdkTableModule} from '@angular/cdk/table';
-import {CdkTreeModule} from '@angular/cdk/tree';
+import { HttpClientModule } from '@angular/common/http';
+import { CdkTableModule } from '@angular/cdk/table';
+import { CdkTreeModule } from '@angular/cdk/tree';
 
 import { AppComponent } from './app.component';
-
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
@@ -22,11 +21,13 @@ import { UserlistComponent } from './/userlist/userlist.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'register',      component: RegisterComponent },
-  { path: 'logout',      component: LogoutComponent },
-  { path: 'home',      component: HomeComponent },
-  { path: 'newevent',      component: NewEventComponent },
-  { path: 'users',      component: UserlistComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'logout', component: LogoutComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'newevent', component: NewEventComponent },
+  { path: 'users', component: UserlistComponent },
+  { path: 'user', component: ProfileComponent },
+  { path: 'events', component: EventlistComponent}
 ];
 
 import {
@@ -64,12 +65,14 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatTreeModule,
+  MatTreeModule
 } from '@angular/material';
 
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { httpInterceptorProviders } from './http-interceptors';
+import { ProfileComponent } from './profile/profile.component';
+import { EventlistComponent } from './eventlist/eventlist.component';
 
 @NgModule({
   exports: [
@@ -109,7 +112,7 @@ import { httpInterceptorProviders } from './http-interceptors';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule,
+    MatTreeModule
   ],
   declarations: []
 })
@@ -124,7 +127,9 @@ export class MaterialModule {}
     HomeComponent,
     LogoutComponent,
     NewEventComponent,
-    UserlistComponent
+    UserlistComponent,
+    EventlistComponent,
+    ProfileComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -143,5 +148,4 @@ export class MaterialModule {}
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
-
+export class AppModule {}

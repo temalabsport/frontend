@@ -1,5 +1,5 @@
 <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Sport Events</a>
+  <a class="navbar-brand" [routerLink]="[ '/home' ]" routerLinkActive="active">Sport Events</a>
 
   <!-- összehúzásnál megjelenik egy lenyitó fül -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -29,7 +29,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="[ '/players' ]" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="[ '/users' ]" routerLinkActive="active">
           <i class="fa fa-volleyball-ball">
             <!-- <span class="badge badge-danger">11</span> -->
           </i>
@@ -63,6 +63,7 @@
         <button class="dropdown-item" [routerLink]="['/']" routerLinkActive="router-link-active" type="button">b</button>
         <button class="dropdown-item" [routerLink]="['/']" routerLinkActive="router-link-active" type="button">c</button> -->
         <button *ngFor="let item of options" class="dropdown-item" [routerLink]="['/']" routerLinkActive="router-link-active" type="button">{{item}}</button>
+        <button  class="dropdown-item" [routerLink]="['/']" routerLinkActive="router-link-active" (click)="logout()" type="button">Logout</button>
       </div>
     </div>
 

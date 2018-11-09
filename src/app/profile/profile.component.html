@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+<div class="profilepage">
+  <div *ngIf="userName != null" class="container profile">
+    <h1>{{fullName}} ({{userName}})</h1>
+
+    <div *ngIf="intro != null ">
+      <label class="font-weight-bold" for="intro">Introduction:</label>
+      <p id="intro">{{intro}}</p>
+    </div>
+
+    <div class="list-group">
+      <a class="list-group-item list-group-item-action font-weight-bold">
+        User's events:
+      </a>
+
+      <div *ngIf="events.length == 0">
+        <a class="list-group-item list-group-item-action">
+          No event yet.
+        </a>
+      </div>
+
+        <a *ngFor="let event of events"
+        [routerLink]="['/events']" routerLinkActive="router-link-active"
+        class="list-group-item list-group-item-action">
+          {{event.name}}
+        </a>
+
+    </div>
+
+  </div>
+</div>
