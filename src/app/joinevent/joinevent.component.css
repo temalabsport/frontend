@@ -2,3 +2,22 @@ h1 {
   font-size: 2rem;
   font-family: 'Playfair Display', serif;
 }
+
+.eventdata {
+  padding: 0.5rem;
+}
+
+.teampicker {
+  background-color: #ffffff;
+  padding: 1rem;
+}
+
+.playerform {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.playerform-full-width {
+  width: 100%;
+}

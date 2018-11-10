@@ -131,7 +131,7 @@ export class MaterialModule {}
     UserlistComponent,
     EventlistComponent,
     ProfileComponent,
-    JoineventComponent
+    JoineventComponent,
   ],
   imports: [
     RouterModule.forRoot(

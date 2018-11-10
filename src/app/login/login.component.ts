@@ -62,7 +62,6 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         resp => {
-          console.log('Bejelentkezve');
           this.router.navigate(['/home']);
           this.authenticationService.setSession(resp);
         },

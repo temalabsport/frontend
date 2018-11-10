@@ -3,18 +3,59 @@
   <div class="row">
     <div class="col-md-12">
 
-      <div class="card">
+      <div class="card mb-2">
 
         <div class="card-body">
           <div class="text-primary font-weight-bold mb-1">{{event.sport}}</div>
-          <h1 class="card-title mb-0">{{event.name}}</h1>
-          <p class="card-text mt-0 mb-0">Date: {{ event.date | date:'medium' }}</p>
-          <p class="card-text mt-0 mb-0">Organizer: {{ event.creator }}</p>
-          <p class="card-text mt-0 mb-0">Location: {{ event.location }}</p>
-          <p class="card-text mt-2 mb-0">{{event.description}}</p>
+          <h1 class="card-title mb-1">{{event.name}}</h1>
+          <div class="row">
+            <div class="eventdata col-md-6">
+              <p class="card-text mt-0 mb-0">Date: {{ event.date | date:'medium' }}</p>
+              <p class="card-text mt-0 mb-0">Organizer: {{ event.creator }}</p>
+              <p class="card-text mt-0 mb-0">Location: {{ event.location }}</p>
+            </div>
+
+            <div class="card-text col-md-6 mt-2 mb-0 desc">{{event.description}}</div>
+          </div>
+
+
         </div>
 
       </div>
+
+      <div class="card teampicker">
+
+        <h3 class="mt-2">Choose at least {{minPlayers}} team members! (including yourself)</h3>
+
+        <input *ngIf="teamReady" (click)="onApply()" type="button" class="btn btn-primary" value="Submit"/>
+
+        <form *ngIf="!teamFull" class="playerform">
+          <mat-form-field class="playerform-full-width">
+            <input type="text" placeholder="Pick a teammate" aria-label="Player" matInput [formControl]="playerformControl"
+              [matAutocomplete]="auto" #memberSelector>
+            <mat-autocomplete (optionSelected)="onSelectTeamMate($event)" #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>1. {{currentUser}}</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr *ngFor="let member of teamMembers">
+                  <td *ngIf="teamMembers.indexOf(member) != 0">{{teamMembers.indexOf(member) + 1}}. {{member}}</td>
+                  <td *ngIf="teamMembers.indexOf(member) != 0"><input type="button" class="btn btn-sm btn-danger col-md-6" (click)="onDelete(member)" value="Remove" /></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
 
     </div>
 

@@ -23,6 +23,11 @@ export class DataService {
     { sport: sport, name: name, latitude: 0, longitude: 0, location: location, date: date, deadline: deadline, description: description });
   }
 
+  postNewTeam() {
+    return this.http.post<any>(`/api/event/apply`,
+    { });
+  }
+
   getUsers() {
     return this.http.get<any>(`/api/user/search`);
   }
