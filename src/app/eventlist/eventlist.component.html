@@ -2,6 +2,8 @@
 <div class="container eventlist">
   <h1>Events</h1>
 
+
+
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
 
@@ -35,26 +37,37 @@
         <td mat-cell *matCellDef="let row"> {{row.location}} </td>
       </ng-container>
 
+      <ng-container matColumnDef="distance">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Distance </th>
+        <td mat-cell *matCellDef="let row"> {{row.distance}} </td>
+      </ng-container>
+
       <ng-container matColumnDef="join">
         <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let row"> <a [routerLink]="['/joinevent']" routerLinkActive="router-link-active"
-            class="btn btn-primary">Join</a> </td>
+        <td mat-cell *matCellDef="let row" > <a *ngIf="row.deadline > currentDate;else deadlineexpired" [routerLink]="['/join']"
+          [queryParams]="{eventID: row.eventID}" routerLinkActive="router-link-active"
+            class="btn btn-primary">Join</a>
+            <ng-template #deadlineexpired><span class="bg-danger">Deadline Expired</span></ng-template> </td>
       </ng-container>
 
       <ng-container matColumnDef="expandedDetail">
         <td mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
-          <div class="event-detail" [@detailExpand]="row == expandedEvent && row.description != '' ? 'expanded' : 'collapsed'">
-            <p class="event-desciption">{{row.description}}</p>
+          <div class="event-detail" [@detailExpand]="row == expandedEvent ? 'expanded' : 'collapsed'">
+            <p >{{row.description}}</p>
+            <div id="map"></div>
           </div>
         </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="eventrow" [class.expanded-row]="expandedEvent === row"
-        (click)="expandedEvent = row"></tr>
+        (click)="expandedEvent = row; setMap();"></tr>
       <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="event-detail-row"></tr>
     </table>
   </div>
   <br>
-  <a role="button" [routerLink]="['/newevent']" routerLinkActive="router-link-active" class="btn btn-lg btn-secondary addbutton">+</a>
+  <a role="button" [routerLink]="['/newevent']" routerLinkActive="router-link-active" class="btn btn-lg btn-secondary mb-2 addbutton">+</a>
 </div>
+
+

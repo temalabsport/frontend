@@ -36,7 +36,7 @@ export class AuthService {
 
     logout() {
         // remove user from local storage to log user out
-        localStorage.removeItem('id_token');
+        localStorage.removeItem('x-auth-token');
         localStorage.removeItem('currentUser');
     }
 }

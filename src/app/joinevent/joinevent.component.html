@@ -25,9 +25,16 @@
 
       <div class="card teampicker">
 
-        <h3 class="mt-2">Choose at least {{minPlayers}} team members! (including yourself)</h3>
+        <div class="input-group mb-3 w-50">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-prepend">Team name:</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Team name input" aria-describedby="inputGroup-prepend" [(ngModel)]="teamName">
+        </div>
 
-        <input *ngIf="teamReady" (click)="onApply()" type="button" class="btn btn-primary" value="Submit"/>
+        <h3 class="mt-2">Choose at least {{minPlayers}} and maximum {{maxPlayers}} team members! (including yourself)</h3>
+
+        <input *ngIf="teamReady && teamName != '' " (click)="onApply()" type="button" class="btn btn-primary w-25" value="Submit"/>
 
         <form *ngIf="!teamFull" class="playerform">
           <mat-form-field class="playerform-full-width">

@@ -1,4 +1,4 @@
-import '../polyfills';
+// import '../polyfills';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,17 +18,25 @@ import { HomeComponent } from './home/home.component';
 import { LogoutComponent } from './logout/logout.component';
 import { NewEventComponent } from './newevent/newevent.component';
 import { UserlistComponent } from './/userlist/userlist.component';
+import { AuthguardService } from './services/authguard/authguard.service';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { httpInterceptorProviders } from './http-interceptors';
+import { ProfileComponent } from './profile/profile.component';
+import { EventlistComponent } from './eventlist/eventlist.component';
+import { JoineventComponent } from './joinevent/joinevent.component';
+import { LocationService } from './services/location/location.service';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'newevent', component: NewEventComponent },
-  { path: 'users', component: UserlistComponent },
-  { path: 'user', component: ProfileComponent },
-  { path: 'events', component: EventlistComponent },
-  { path: 'join', component: JoineventComponent }
+  { path: 'home', component: HomeComponent, canActivate: [AuthguardService]  },
+  { path: 'newevent', component: NewEventComponent, canActivate: [AuthguardService]  },
+  { path: 'users', component: UserlistComponent, canActivate: [AuthguardService]  },
+  { path: 'user', component: ProfileComponent, canActivate: [AuthguardService]  },
+  { path: 'events', component: EventlistComponent, canActivate: [AuthguardService]  },
+  { path: 'join', component: JoineventComponent, canActivate: [AuthguardService]  }
 ];
 
 import {
@@ -68,12 +76,6 @@ import {
   MatTooltipModule,
   MatTreeModule
 } from '@angular/material';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { httpInterceptorProviders } from './http-interceptors';
-import { ProfileComponent } from './profile/profile.component';
-import { EventlistComponent } from './eventlist/eventlist.component';
-import { JoineventComponent } from './joinevent/joinevent.component';
 
 @NgModule({
   exports: [
@@ -147,7 +149,7 @@ export class MaterialModule {}
     MaterialModule,
     ReactiveFormsModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, LocationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

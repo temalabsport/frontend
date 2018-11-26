@@ -11,7 +11,8 @@ import { FormControl } from '@angular/forms';
 import { startWith, map, first } from 'rxjs/operators';
 import { DataService } from '../services/data/data.service';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-joinevent',
@@ -24,9 +25,10 @@ export class JoineventComponent implements OnInit {
   options: string[];
   filteredOptions: Observable<string[]>;
 
+  teamName = '';
   teamMembers: string[];
-  minPlayers = 3;
-  maxPlayers = 5;
+  minPlayers: number;
+  maxPlayers: number;
   teamFull: boolean;
   teamReady: boolean;
 
@@ -38,25 +40,36 @@ export class JoineventComponent implements OnInit {
   constructor(
     private dataService: DataService,
     private renderer: Renderer,
-    private router: Router) {
+    private router: Router,
+    private route: ActivatedRoute) {
 
     this.teamFull = false;
     this.teamReady = false;
-    console.log(JSON.parse(localStorage.getItem('currentUser')).body.userName);
+
+    this.event = new Event();
     this.options = new Array();
     this.teamMembers = new Array();
-    this.event = new Event();
-    this.event.sport = 'Foci';
-    this.event.name = 'Focimeccs';
-    this.event.date = new Date();
-    this.event.description = 'Ez itt egy focimeccs leírása. ';
   }
 
   ngOnInit() {
-    this.currentUser = JSON.parse(
-      localStorage.getItem('currentUser')
-    ).body.userName;
+    let eventID: number;
+    this.route.queryParams.subscribe(params => {
+      eventID = params.eventID;
+    });
+
+    if(eventID !== undefined){
+      this.initEvent(eventID);
+    }
+
+    if(localStorage.getItem('currentUser')){
+      this.currentUser = JSON.parse(
+        localStorage.getItem('currentUser')
+      ).body.userName;
+    }
+
+
     this.teamMembers.push(this.currentUser);
+
     this.dataService.getUsers().subscribe(result => {
       for (const user of result.results) {
         if (user.userName !== this.currentUser) {
@@ -71,6 +84,18 @@ export class JoineventComponent implements OnInit {
     });
   }
 
+  initEvent(eventID: number) {
+    this.dataService.getEventByID(eventID)
+    .subscribe(
+      result => {
+        this.event.copyFrom(result);
+        this.minPlayers = this.event.minTeamSize;
+        if (this.minPlayers === 1) { this.teamReady = true; }
+        this.maxPlayers = this.event.maxTeamSize;
+      },
+      error => alert('Event not found!'));
+  }
+
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
@@ -83,7 +108,10 @@ export class JoineventComponent implements OnInit {
     const member = event.option.value;
     if (this.teamMembers.length < this.maxPlayers) {
       this.teamMembers.push(member);
-      this.teamReady = true;
+
+      if (this.teamMembers.length >= this.minPlayers) {
+        this.teamReady = true;
+      }
 
       const index: number = this.options.indexOf(member);
       if (index !== -1) {
@@ -118,17 +146,18 @@ export class JoineventComponent implements OnInit {
   }
 
   onApply() {
-    if (this.teamMembers.length < this.minPlayers) {
+    if (this.teamMembers.length < this.minPlayers || this.teamName === '') {
       return; // TODO hibaüzenet
     }
-    this.dataService.postNewTeam()
+    this.dataService.postNewTeam(this.event.eventID, this.teamName, this.teamMembers)
     .pipe(first())
     .subscribe(
       resp => {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/events']);
       },
       error => {
-        this.router.navigate(['/home']);
+        console.log(error);
+        this.router.navigate(['/events']);
       }
     );
   }

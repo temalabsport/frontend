@@ -11,6 +11,10 @@ html {
   background-size: cover;
 }
 
+h1 {
+  color: azure !important;
+}
+
 /* * {
   border: 1px solid red !important;
 } */

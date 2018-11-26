@@ -51,24 +51,32 @@ export class NewEventComponent implements OnInit {
     return this.newEventForm.controls;
   }
 
-  onSubmit() {
-    this.dataService
+  postEvent(lonLat, context) {
+    context.dataService
       .postNewEvent(
-        this.f.sport.value,
-        this.f.name.value,
-        this.f.location.value,
-        this.f.date.value,
-        this.f.deadline.value,
-        this.f.description.value
+        context.f.sport.value,
+        context.f.name.value,
+        context.f.location.value,
+        context.f.date.value,
+        context.f.deadline.value,
+        context.f.description.value,
+        lonLat.lat,
+        lonLat.lng
       )
       .pipe(first())
       .subscribe(
         resp => {
-          this.router.navigate(['/home']);
+          context.router.navigate(['/home']);
         },
         error => {
-          this.router.navigate(['/home']);
+          context.router.navigate(['/home']);
         }
       );
   }
+
+  onSubmit() {
+    this.locationService.getLatLongFromAddress(this.f.location.value)
+      .subscribe(result => this.postEvent(result.results[0].locations[0].latLng, this));
+  }
+
 }

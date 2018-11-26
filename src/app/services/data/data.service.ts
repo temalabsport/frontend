@@ -2,30 +2,62 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { User } from 'src/app/models/user';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
+  getEvents(lonLat: any) {
+    let params = new HttpParams();
 
-  getEvents() {
-    return this.http.get<any>(`/api/event/search`);
+    // Begin assigning parameters
+    params = params.append('long', lonLat.longitude);
+    params = params.append('lat', lonLat.latitude);
+
+    return this.http.get<any>(`/api/event/search`, { params: params });
   }
 
   getSports() {
     return this.http.get<any>(`/api/sports`);
   }
 
-  postNewEvent(sport: string, name: string, location: string, date: string, deadline: string, description: string) {
-    return this.http.post<any>(`/api/event/new`,
-    { sport: sport, name: name, latitude: 0, longitude: 0, location: location, date: date, deadline: deadline, description: description });
+  postNewEvent(
+    sport: string,
+    name: string,
+    location: string,
+    date: string,
+    deadline: string,
+    description: string,
+    latitude: number,
+    longitude: number
+  ) {
+    return this.http.post<any>(`/api/event/new`, {
+      sport: sport,
+      name: name,
+      latitude: latitude,
+      longitude: longitude,
+      location: location,
+      date: date,
+      deadline: deadline,
+      description: description
+    });
   }
 
-  postNewTeam() {
-    return this.http.post<any>(`/api/event/apply`,
-    { });
+  // eventID:
+  //   type: number
+  // teamName:
+  //   type: string
+  // members:
+  //   type: array
+  //   items:
+  //     type: string
+  postNewTeam(eventID: number, teamName: string, members: string[]) {
+    return this.http.post<any>(`/api/event/apply`, {
+      eventID: eventID,
+      teamName: teamName,
+      members: members
+    });
   }
 
   getUsers() {
@@ -39,5 +71,9 @@ export class DataService {
   getEventsByUser(userName: string) {
     const options = { params: new HttpParams().set('userName', userName) };
     return this.http.get<any>(`/api/event/search`, options);
+  }
+
+  getEventByID(eventID: number) {
+    return this.http.get<any>(`/api/event/` + eventID.toString());
   }
 }

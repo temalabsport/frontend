@@ -3,6 +3,9 @@
 
 export class Event {
   sport: string;
+  minTeamSize: number;
+  maxTeamSize: number;
+  eventID: number;
   creator: string;
   name: string;
   latitude: number;
@@ -13,8 +16,11 @@ export class Event {
   deadline: Date;
   description: string;
 
-  copyInto(event: any) {
+  copyFrom(event: any) {
     this.sport = event.sport;
+    this.minTeamSize = event.minTeamSize;
+    this.maxTeamSize = event.maxTeamSize;
+    this.eventID = event.eventID;
     this.creator = event.creator;
     this.name = event.name;
     this.latitude = event.latitude;

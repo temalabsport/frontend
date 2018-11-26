@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
         for (const event of userEvents) {
           console.log(event.date);
           const e = new Event();
-          e.copyInto(event);
+          e.copyFrom(event);
           this.events.push(e);
         }
       },

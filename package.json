@@ -38,8 +38,8 @@
     "ol": "^5.2.0",
     "popper.js": "^1.14.4",
     "rxjs": "^6.3.3",
-    "zone.js": "^0.8.26",
-    "typescript": "^2.9.2"
+    "typescript": "^2.9.2",
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.6.8",
@@ -68,5 +68,4 @@
     "node": "8.11.4",
     "npm": "5.6.0"
   }
-
 }

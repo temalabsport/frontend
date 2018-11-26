@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { MaterialModule } from '../app.module';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -8,7 +13,13 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
+      declarations: [ HomeComponent, NavbarComponent ],
+      imports: [
+        MaterialModule,
+        RouterTestingModule,
+        HttpClientModule,
+        BrowserAnimationsModule
+      ]
     })
     .compileComponents();
   }));

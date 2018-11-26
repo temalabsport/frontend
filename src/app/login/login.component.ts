@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit {
         },
         error => {
           this.loading = false;
+          alert('Wrong e-mail or password!');
         }
       );
   }
