@@ -12,7 +12,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
       const url = 'http://sport-temalabor.azurewebsites.net';
-      if(req.url.includes('azure')){
+      if(!req.url.includes('mapquest')){
         req = req.clone({
           url: url + req.url
         });
