@@ -27,6 +27,7 @@ import { EventlistComponent } from './eventlist/eventlist.component';
 import { JoineventComponent } from './joinevent/joinevent.component';
 import { LocationService } from './services/location/location.service';
 
+
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -76,6 +77,7 @@ import {
   MatTooltipModule,
   MatTreeModule
 } from '@angular/material';
+
 
 @NgModule({
   exports: [

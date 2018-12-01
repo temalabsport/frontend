@@ -11,7 +11,8 @@ h1 {
 }
 
 #eventform {
-  margin-top: 1em;
+  margin-top: 1rem;
+  margin-bottom: 5rem;
 }
 
 form {

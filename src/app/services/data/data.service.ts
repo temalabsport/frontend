@@ -14,7 +14,7 @@ export class DataService {
     // Begin assigning parameters
     params = params.append('long', lonLat.longitude);
     params = params.append('lat', lonLat.latitude);
-
+    params = params.append('pageSize', '100');
     return this.http.get<any>(`/api/event/search`, { params: params });
   }
 
@@ -61,7 +61,8 @@ export class DataService {
   }
 
   getUsers() {
-    return this.http.get<any>(`/api/user/search`);
+    const options = { params: new HttpParams().set('pageSize', '100') };
+    return this.http.get<any>(`/api/user/search`, options);
   }
 
   getUser(userName: string) {
@@ -69,7 +70,7 @@ export class DataService {
   }
 
   getEventsByUser(userName: string) {
-    const options = { params: new HttpParams().set('userName', userName) };
+    const options = { params: new HttpParams().set('userName', userName).set('pageSize', '100') };
     return this.http.get<any>(`/api/event/search`, options);
   }
 

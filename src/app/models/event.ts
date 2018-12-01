@@ -26,7 +26,7 @@ export class Event {
     this.latitude = event.latitude;
     this.longitude = event.longitude;
     this.location = event.location;
-    this.distance = event.distance;
+    this.distance = parseFloat((Math.round(parseFloat(event.distance) * 100) / 100).toFixed(2));
     this.date = new Date(event.date);
     this.deadline = new Date(event.deadline);
     this.description = event.description;

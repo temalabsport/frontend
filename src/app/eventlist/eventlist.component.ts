@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { DataService } from '../services/data/data.service';
 import { Event } from 'src/app/models/event';
 import { trigger, state, transition, animate, style } from '@angular/animations';
@@ -46,8 +46,11 @@ export class EventlistComponent implements OnInit {
   circleFeature: Feature;
   zoom: 16;
 
+  @ViewChild(MatPaginator)
+  paginator: MatPaginator;
   @ViewChild(MatSort)
   sort: MatSort;
+
   myPositionLonLat = {longitude: 0, latitude: 0};
 
   currentDate = new Date();
@@ -58,9 +61,19 @@ export class EventlistComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
     this.getEventsFromMyPosition();  // eventek megszerzése saját pozíció alapján
-    //this.initMap();
   }
+
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
 
   initMap() {
     this.map = new Map({
@@ -92,10 +105,6 @@ export class EventlistComponent implements OnInit {
 
   addEventCircle(lonLat: any, context: any) {
     const style = new Style({
-      /*stroke: new Stroke({
-          color: '#b30734',
-          width: 3
-      }),*/
       fill: new Fill({
           color: [51, 51, 51, .7]
       })
