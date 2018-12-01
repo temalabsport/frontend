@@ -11,7 +11,7 @@ import VectorLayer from 'ol/layer/Vector';
 import OSM from 'ol/source/OSM';
 import Vector from 'ol/source/Vector';
 import Circle from 'ol/geom/Circle';
-import Feature from 'ol/feature';
+import Feature from 'ol/Feature';
 import { Style, Fill } from 'ol/style';
 
 declare var ol: any;
