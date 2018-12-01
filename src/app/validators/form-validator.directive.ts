@@ -7,5 +7,3 @@ export function dateValidator(): ValidatorFn {
     return forbidden ? {'forbiddenDate': {value: control.value}} : null;
   };
 }
-
-
