@@ -37,14 +37,6 @@
         </a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="[ '/teams' ]" routerLinkActive="active">
-          <i class="fa fa-users"></i>
-          <!-- <span class="badge badge-danger">11</span> -->
-          Teams
-        </a>
-      </li>
-
     </ul>
 
     <!-- <div class="dropdown">
@@ -59,18 +51,8 @@
         <i class="fa fa-user fa-4x" style="color:#DDDDDD"></i>
       </a>
       <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="dropdownMenu" id="profileList">
-        <!-- <button class="dropdown-item" [routerLink]="['/']" routerLinkActive="router-link-active"  type="button">a</button>
-        <button class="dropdown-item" [routerLink]="['/']" routerLinkActive="router-link-active" type="button">b</button>
-        <button class="dropdown-item" [routerLink]="['/']" routerLinkActive="router-link-active" type="button">c</button> -->
-        <button *ngFor="let item of options" class="dropdown-item" [routerLink]="['/']" routerLinkActive="router-link-active" type="button">{{item}}</button>
         <button  class="dropdown-item" [routerLink]="['/']" routerLinkActive="router-link-active" (click)="logout()" type="button">Logout</button>
       </div>
     </div>
-
-
-    <!-- <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form> -->
   </div>
 </nav>

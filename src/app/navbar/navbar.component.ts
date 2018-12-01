@@ -18,9 +18,6 @@ export class NavbarComponent implements OnInit {
         localStorage.getItem('currentUser')
       ).body.userName;
     }
-    this.options = new Array();
-    this.options.push('Profil');
-    this.options.push('Statisztika');
   }
 
   logout() {

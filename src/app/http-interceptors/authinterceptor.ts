@@ -12,9 +12,12 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
       const url = 'http://sport-temalabor.azurewebsites.net';
-      req = req.clone({
-        url: url + req.url
-      });
+      if(req.url.includes('azure')){
+        req = req.clone({
+          url: url + req.url
+        });
+      }
+
 
       const idToken = localStorage.getItem('x-auth-token');
 
