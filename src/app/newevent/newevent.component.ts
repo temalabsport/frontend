@@ -72,8 +72,8 @@ export class NewEventComponent implements OnInit {
         context.f.sport.value,
         context.f.name.value,
         context.f.location.value,
-        context.f.date.value,
-        context.f.deadline.value,
+        context.f.date.value.toISOString(),
+        context.f.deadline.value.toISOString(),
         context.f.description.value,
         lonLat.lat,
         lonLat.lng

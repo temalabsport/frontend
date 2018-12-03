@@ -57,9 +57,11 @@ export class EventlistComponent implements OnInit {
 
   constructor(private dataService: DataService) {
     this.dataSource = new MatTableDataSource();
+
   }
 
   ngOnInit() {
+    console.log(this.currentDate);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.getEventsFromMyPosition();  // eventek megszerzése saját pozíció alapján

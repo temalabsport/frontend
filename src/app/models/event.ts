@@ -12,8 +12,8 @@ export class Event {
   longitude: number;
   location: string;
   distance: number;
-  date: Date;
-  deadline: Date;
+  date: string;
+  deadline: string;
   description: string;
 
   copyFrom(event: any) {
@@ -27,8 +27,8 @@ export class Event {
     this.longitude = event.longitude;
     this.location = event.location;
     this.distance = parseFloat((Math.round(parseFloat(event.distance) * 100) / 100).toFixed(2));
-    this.date = new Date(event.date);
-    this.deadline = new Date(event.deadline);
+    this.date = event.date;
+    this.deadline = event.deadline;
     this.description = event.description;
   }
 }
