@@ -8,12 +8,17 @@ import { User } from 'src/app/models/user';
 export class DataService {
   constructor(private http: HttpClient) {}
 
-  getEvents(lonLat: any) {
-    let params = new HttpParams();
+  getEvents(lonLat: any, positionGiven: boolean) {
 
-    return this.http.get<any>(`/api/event/search`, {
-      params: new HttpParams().set('long', lonLat.longitude).set('lat', lonLat.latitude).set('pageSize', '100')
-    });
+    if (positionGiven) {
+      return this.http.get<any>(`/api/event/search`, {
+        params: new HttpParams().set('long', lonLat.longitude).set('lat', lonLat.latitude).set('pageSize', '100')
+      });
+    } else {
+      return this.http.get<any>(`/api/event/search`, {
+        params: new HttpParams().set('pageSize', '100')
+      });
+    }
   }
 
   getSports() {

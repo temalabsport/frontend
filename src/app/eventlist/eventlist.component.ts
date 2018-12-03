@@ -127,12 +127,12 @@ export class EventlistComponent implements OnInit {
         position => {
           this.myPositionLonLat.latitude = position.coords.latitude;
           this.myPositionLonLat.longitude = position.coords.longitude;
-          this.getEvents(this);
+          this.getEvents(this, true);
         },
         error => {
           switch (error.code) {
             case 1:
-              console.log('Permission Denied');
+              console.log('Permission to Location Denied By User');
               break;
             case 2:
               console.log('Position Unavailable');
@@ -141,13 +141,14 @@ export class EventlistComponent implements OnInit {
               console.log('Timeout');
               break;
           }
+          this.getEvents(this, false);
         }
       );
     }
   }
 
-  getEvents(context: any) {
-    context.dataService.getEvents(context.myPositionLonLat).subscribe(result => {
+  getEvents(context: any, myPositionGiven: boolean) {
+    context.dataService.getEvents(context.myPositionLonLat, myPositionGiven).subscribe(result => {
       for (const event of result.results) {
         const e = new Event();
         e.copyFrom(event);
