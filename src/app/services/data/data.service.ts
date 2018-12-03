@@ -11,11 +11,9 @@ export class DataService {
   getEvents(lonLat: any) {
     let params = new HttpParams();
 
-    // Begin assigning parameters
-    params = params.append('long', lonLat.longitude);
-    params = params.append('lat', lonLat.latitude);
-    params = params.append('pageSize', '100');
-    return this.http.get<any>(`/api/event/search`, { params: params });
+    return this.http.get<any>(`/api/event/search`, {
+      params: new HttpParams().set('long', lonLat.longitude).set('lat', lonLat.latitude).set('pageSize', '100')
+    });
   }
 
   getSports() {
@@ -70,7 +68,9 @@ export class DataService {
   }
 
   getEventsByUser(userName: string) {
-    const options = { params: new HttpParams().set('userName', userName).set('pageSize', '100') };
+    const options = {
+      params: new HttpParams().set('userName', userName).set('pageSize', '100')
+    };
     return this.http.get<any>(`/api/event/search`, options);
   }
 

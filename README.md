@@ -11,5 +11,3 @@ ng serve -o
 ## Unit tests with Karma
 
 ng test
-
-
